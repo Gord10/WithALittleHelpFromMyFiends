@@ -1874,6 +1874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpBar: {fileID: 551214106}
   xpBar: {fileID: 1163900587}
+  fillTweenSpeed: 0.25
 --- !u!1001 &1101789333610973562
 PrefabInstance:
   m_ObjectHideFlags: 0
