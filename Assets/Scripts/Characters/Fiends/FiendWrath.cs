@@ -6,12 +6,14 @@ namespace Fiend
 {
     public class FiendWrath : FiendBase
     {
-        public Projectile projectilePrefab;
         public float projectileLaunchInterval = 0.6f;
+        ProjectileManager projectileManager;
 
         protected override void Awake()
         {
             base.Awake();
+
+            projectileManager = FindObjectOfType<ProjectileManager>();
             StartCoroutine(LaunchProjectileAtRandomTargets());
         }
 
@@ -27,7 +29,7 @@ namespace Fiend
             while(true)
             {
                 yield return wait;
-                Mob mob = MobManager.Instance.GetRandomMobInRange(Transform.position, 10);
+                Mob mob = MobManager.Instance.GetClosestMobAlive(Transform.position);
                 Vector2 direction;
                 if(mob != null)
                 {
@@ -39,8 +41,12 @@ namespace Fiend
                     direction = Random.insideUnitCircle.normalized;
                 }
 
-                Projectile projectile = Instantiate(projectilePrefab);
-                projectile.Launch(Transform.position, direction);
+                Projectile projectile = projectileManager.GetProjectileFromPool();
+                if (projectile)
+                {
+                    projectile.Launch(Transform.position, direction);
+                }
+                
             }
         }
     }

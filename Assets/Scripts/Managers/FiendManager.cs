@@ -18,7 +18,8 @@ public class FiendManager : MonoBehaviour
     public void Summon()
     {
         FiendBase fiend = fiends[fiendIndexToSummon];
-        Vector3 pos = GameManager.GetRandomPointCloseToPoint(Player.Instance.Transform.position, 4);
+        float playerDistanceRange = 6;
+        Vector3 pos = GameManager.GetRandomPointCloseToPoint(Player.Instance.Transform.position, playerDistanceRange);
         fiend.gameObject.SetActive(true);
         fiend.Spawn(pos);
         fiendIndexToSummon++;

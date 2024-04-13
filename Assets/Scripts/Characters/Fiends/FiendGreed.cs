@@ -7,7 +7,7 @@ namespace Fiend
 {
     public class FiendGreed : FiendBase
     {
-        public float range = 4; //How much he wants to collect crystal
+        public float range = 4;
 
         private void FixedUpdate()
         {

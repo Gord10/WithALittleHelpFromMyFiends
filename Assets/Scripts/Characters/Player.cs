@@ -80,4 +80,9 @@ public class Player : CharacterBase
         health = Mathf.Clamp(health, 0, MaxHealth);
         gameUi.SetHpBar(health, MaxHealth);
     }
+
+    public bool IsPointTooCloseToMe(Vector3 point, float maxDistance)
+    {
+        return Vector2.Distance(Transform.position, point) <= maxDistance;
+    }
 }

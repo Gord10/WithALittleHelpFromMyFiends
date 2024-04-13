@@ -12,7 +12,7 @@ public class CollectableItemManager : MonoBehaviour
     public int maxCrystals;
     public Transform crystalsFolder;
     public float crystalSpawnProbability = 0.1f;
-
+    public float maxCrystalPlayerDistanceAtStart = 4;
     Crystal[] crystals;
     HpPowerUp[] hpPowerUps;
 
@@ -25,15 +25,16 @@ public class CollectableItemManager : MonoBehaviour
         for(i = 0; i < crystals.Length; i++)
         {
             crystals[i] = Instantiate(crystalPrefab, crystalsFolder);
+            crystals[i].name += i;
             crystals[i].gameObject.SetActive(false);
         }
 
         Vector3 playerPos = Player.Instance.transform.position;
-        float maxCrystalPlayerDistance = 10;
+        
         //Spawn the crystals required to summon a fiend
         for(i = 0; i < GameManager.Instance.requiredCrystalToSummon; i++)
         {
-            Vector3 randomPoint = GameManager.GetRandomPointCloseToPoint(playerPos, maxCrystalPlayerDistance);
+            Vector3 randomPoint = GameManager.GetRandomPointCloseToPoint(playerPos, maxCrystalPlayerDistanceAtStart);
             crystals[i].Spawn(randomPoint);
         }
 
@@ -48,7 +49,7 @@ public class CollectableItemManager : MonoBehaviour
         for(int i = 0; i < array.Length; i++)
         {
             CollectableBase collectable = array[i];
-            if (collectable.IsCollectable)
+            if (collectable.IsCollectable && collectable.gameObject.activeSelf)
             {
                 float distance = collectable.GetDistance(position);
                 if (distance < minDistance)

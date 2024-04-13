@@ -6,9 +6,11 @@ public class Projectile : MonoBehaviour
 {
     public float speed = 5;
     public float damage = 3;
+    public float lifeTime = 4;
 
     Rigidbody2D rigidbody;
     Vector2 direction;
+    float launchTime;
 
     private void Awake()
     {
@@ -19,10 +21,17 @@ public class Projectile : MonoBehaviour
     {
         transform.position = position;
         this.direction = direction;
+        launchTime = Time.time;
+        gameObject.SetActive(true);
     }
 
     private void FixedUpdate()
     {
+        if(Time.time - launchTime >= lifeTime)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         rigidbody.velocity = direction * speed;
     }
 

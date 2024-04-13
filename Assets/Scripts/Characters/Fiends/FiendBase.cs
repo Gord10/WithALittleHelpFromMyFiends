@@ -38,7 +38,7 @@ namespace Fiend
         //Decides if fiend wants to chase an item like crystal or food, instead of an enemy
         protected bool WillChaseCollectable()
         {
-            bool willChaseCollectable = targetedCollectable != null;
+            bool willChaseCollectable = targetedCollectable != null && targetedCollectable.IsCollectable;
             return willChaseCollectable;
         }
 
@@ -49,12 +49,14 @@ namespace Fiend
 
         protected void ChaseCollectableItem(float range)
         {
-            if (!targetedCollectable || !targetedCollectable.IsCollectable)
-            {
-                targetedCollectable = FindDesiredCollectableItem(range);
-            }
+            //if (!targetedCollectable || !targetedCollectable.IsCollectable)
+            //{
+            //    targetedCollectable = FindDesiredCollectableItem(range);
+            //}
 
-            if(doesWantToDamageMobs)
+            targetedCollectable = FindDesiredCollectableItem(range);
+
+            if (doesWantToDamageMobs)
             {
                 SearchForMobTarget();
             }
@@ -68,6 +70,7 @@ namespace Fiend
             if (willChaseCrystal)
             {
                 MoveTowardsTargetCollectable();
+                //print($"Chase collectable {targetedCollectable.gameObject.name}");
             }
             else
             {

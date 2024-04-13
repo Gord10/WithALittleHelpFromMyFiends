@@ -27,10 +27,12 @@ public class GameManager : MonoBehaviour
     int collectedCrystals = 0; //Used for summoning fiends. Resets to 0 after summoning a fiend.
 
     GameUi gameUi;
+    Player player;
 
     private void Awake()
     {
         instance = this;
+        player = FindObjectOfType(typeof(Player)) as Player;
         gameUi = FindObjectOfType<GameUi>();
         gameUi.SetXpBar(collectedCrystals, requiredCrystalToSummon);
     }
@@ -67,7 +69,17 @@ public class GameManager : MonoBehaviour
 
     public static Vector3 GetRandomPointCloseToPoint(Vector3 point, float range)
     {
-        Vector3 circle = Random.insideUnitCircle * range;
+        Vector3 circle;
+        Vector3 position;
+        float maxDistanceFromPlayer = 3;
+        //We want to make sure that the random point is not too close to the player
+        do
+        {
+            circle = Random.insideUnitCircle * range;
+            position = point + circle;
+        }
+        while (Player.Instance.IsPointTooCloseToMe(position, maxDistanceFromPlayer)); 
+
 
         return point + circle;
     }

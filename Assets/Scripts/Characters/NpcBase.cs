@@ -39,10 +39,7 @@ public abstract class NpcBase : CharacterBase
 
     public void MoveTowardsTargetCollectable()
     {
-        if(targetedCollectable != null)
-        {
-            MoveTowardsTargetPosition(targetedCollectable.Transform.position);
-        }
+        MoveTowardsTargetPosition(targetedCollectable.Transform.position);
     }
 
     public void MoveTowardsTargetPosition(Vector3 position)
