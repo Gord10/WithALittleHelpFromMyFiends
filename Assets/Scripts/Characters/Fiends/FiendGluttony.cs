@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Fiend
 {
-    public class FiendGreed : FiendBase
+    public class FiendGluttony: FiendBase
     {
-        public float range = 4; //How much he wants to collect crystal
+        public float range = 10;
 
         private void FixedUpdate()
         {
@@ -18,16 +18,16 @@ namespace Fiend
         {
             if (collision.CompareTag("Collectable"))
             {
-                if (collision.gameObject.TryGetComponent<Crystal>(out Crystal collectable))
+                if (collision.gameObject.TryGetComponent<HpPowerUp>(out HpPowerUp hpPowerUp))
                 {
-                    collectable.GetCollected(this);
+                    hpPowerUp.GetCollected(this);
                 }
             }
         }
 
         protected override CollectableBase FindDesiredCollectableItem(float range)
         {
-            return CollectableItemManager.Instance.GetClosestCrystal(Transform.position, range);
+            return CollectableItemManager.Instance.GetClosestHpPowerUp(Transform.position, range);
         }
     }
 }

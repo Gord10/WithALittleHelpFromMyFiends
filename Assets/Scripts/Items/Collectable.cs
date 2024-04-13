@@ -27,6 +27,11 @@ namespace CollectableItem
             collider.enabled = false;
             //gameObject.SetActive(false);
         }
+
+        public float GetDistance(Vector3 point)
+        {
+            return Vector2.Distance(Transform.position, point);
+        }
     }
 }
 

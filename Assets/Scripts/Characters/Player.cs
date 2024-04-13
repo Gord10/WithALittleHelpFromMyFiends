@@ -58,4 +58,11 @@ public class Player : CharacterBase
         base.ReceiveDamage(damage);
         gameUi.SetHpBar(health, MaxHealth);
     }
+
+    public void IncreaseHealth(float increase)
+    {
+        health += increase;
+        health = Mathf.Clamp(health, 0, MaxHealth);
+        gameUi.SetHpBar(health, MaxHealth);
+    }
 }
