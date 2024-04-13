@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd5d531b0fe4fa4a834d0151a5890b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnInterval: 0.8
+  mobStartNum: 5
   mobPrefab: {fileID: 2925015155231437806, guid: 7ee180f704dc365499fe9e67236c9ebf, type: 3}
-  maxMobAmount: 200
+  mobPoolSize: 100

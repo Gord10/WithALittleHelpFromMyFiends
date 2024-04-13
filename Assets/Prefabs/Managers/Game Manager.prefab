@@ -44,4 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0548c42589e7b4686395aa91186d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredCrystalToSummon: 10
+  requiredCrystalToSummon: 7
+  gameWorldHalfWidth: 10
+  gameWorldHalfHeight: 10
+  slowDownCofactor: 0.5
+  state: 0

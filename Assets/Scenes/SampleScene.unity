@@ -123,24 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &85596472 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6004737119579606105, guid: 298c869c4727ac540a0bc3bb929269ef, type: 3}
-  m_PrefabInstance: {fileID: 5620664560572826485}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &85596477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85596472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f461df06b6bfb64398087c9a17390ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 7
 --- !u!1 &100715786
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,18 +2075,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2533008375429155965, guid: 3f0b59c868102a14cb6bd18c81ade9f1, type: 3}
-      propertyPath: gameWorldHalfWidth
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533008375429155965, guid: 3f0b59c868102a14cb6bd18c81ade9f1, type: 3}
-      propertyPath: gameWorldHalfHeight
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533008375429155965, guid: 3f0b59c868102a14cb6bd18c81ade9f1, type: 3}
-      propertyPath: requiredCrystalToSummon
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2161,22 +2131,6 @@ PrefabInstance:
     - target: {fileID: 8590776579749660991, guid: a86d1146911f4834bab6c8903dc8d25a, type: 3}
       propertyPath: m_Name
       value: Mob Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 9042006516819683108, guid: a86d1146911f4834bab6c8903dc8d25a, type: 3}
-      propertyPath: mobStartNum
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9042006516819683108, guid: a86d1146911f4834bab6c8903dc8d25a, type: 3}
-      propertyPath: maxMobAmount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 9042006516819683108, guid: a86d1146911f4834bab6c8903dc8d25a, type: 3}
-      propertyPath: spawnInterval
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9042006516819683108, guid: a86d1146911f4834bab6c8903dc8d25a, type: 3}
-      propertyPath: mobStartNumber
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2288,18 +2242,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1604007212958749594, guid: 298c869c4727ac540a0bc3bb929269ef, type: 3}
-      propertyPath: m_Color.b
-      value: 0.76819396
-      objectReference: {fileID: 0}
-    - target: {fileID: 1604007212958749594, guid: 298c869c4727ac540a0bc3bb929269ef, type: 3}
-      propertyPath: m_Color.g
-      value: 0.76819396
-      objectReference: {fileID: 0}
-    - target: {fileID: 1604007212958749594, guid: 298c869c4727ac540a0bc3bb929269ef, type: 3}
-      propertyPath: m_Color.r
-      value: 0.76819396
-      objectReference: {fileID: 0}
     - target: {fileID: 3722827030753045199, guid: 298c869c4727ac540a0bc3bb929269ef, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2307,10 +2249,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6004737119579606105, guid: 298c869c4727ac540a0bc3bb929269ef, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 85596477}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 298c869c4727ac540a0bc3bb929269ef, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
