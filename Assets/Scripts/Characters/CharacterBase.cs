@@ -13,11 +13,15 @@ public abstract class CharacterBase : MonoBehaviour
     public Transform Transform => cachedTransform;
     Transform cachedTransform;
 
+    float maxHealth; //Assigned at Awake
+    public float MaxHealth => maxHealth;
+
     protected virtual void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         cachedTransform = transform;
         movementDirection = new();
+        maxHealth = health;
     }
 
     protected void SetDirectionTowardsTarget(Vector3 targetPosition)
@@ -36,7 +40,7 @@ public abstract class CharacterBase : MonoBehaviour
         return gameObject.activeSelf && health > 0;
     }
 
-    public void ReceiveDamage(float damage)
+    public virtual void ReceiveDamage(float damage)
     {
         health -= damage;
         if(health <= 0)

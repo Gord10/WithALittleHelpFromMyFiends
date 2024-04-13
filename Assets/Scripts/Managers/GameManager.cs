@@ -15,10 +15,14 @@ public class GameManager : MonoBehaviour
 
     int collectedCrystals = 0; //Used for summoning fiends. Resets to 0 after summoning a fiend.
 
+    GameUi gameUi;
+
     private void Awake()
     {
         instance = this;
+        gameUi = FindObjectOfType<GameUi>();
         player = FindObjectOfType<Player>();
+        gameUi.SetXpBar(collectedCrystals, requiredCrystalToSummon);
     }
 
     public static Vector3 GetPlayerPosition()
@@ -29,5 +33,12 @@ public class GameManager : MonoBehaviour
     public void OnCrystalCollection(Crystal crystal)
     {
         collectedCrystals += crystal.value;
+
+        while(collectedCrystals >= requiredCrystalToSummon)
+        {
+            collectedCrystals -= requiredCrystalToSummon;
+        }
+
+        gameUi.SetXpBar(collectedCrystals, requiredCrystalToSummon);
     }
 }

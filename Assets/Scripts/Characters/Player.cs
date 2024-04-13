@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class Player : CharacterBase
 {
+    GameUi gameUi;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        gameUi = FindObjectOfType<GameUi>();
+        gameUi.SetHpBar(health, MaxHealth);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -42,5 +51,11 @@ public class Player : CharacterBase
                 collectable.GetCollected(this);
             }
         }
+    }
+
+    public override void ReceiveDamage(float damage)
+    {
+        base.ReceiveDamage(damage);
+        gameUi.SetHpBar(health, MaxHealth);
     }
 }
