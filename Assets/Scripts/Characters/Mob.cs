@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mob : CharacterBase
+public class Mob : NpcBase
 {
-    private Transform targetTransform;
-
-    public void SetTarget(Transform targetTransform)
+    protected override void Awake()
     {
-        this.targetTransform = targetTransform;
+        base.Awake();
+        damageableCharTags = new string[] {"Player" };
     }
-
-    public void ManualFixedUpdate()
+    public override void Die()
     {
-        SetDirectionTowardsTarget(targetTransform.position);
-        MoveRigidbody();
+        base.Die();
+        gameObject.SetActive(false);
     }
 
 }

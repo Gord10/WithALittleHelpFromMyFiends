@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8013770213769261695}
   - component: {fileID: 8670018378036365530}
   - component: {fileID: 2925015155231437806}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mob
-  m_TagString: Untagged
+  m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,3 +162,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  health: 10
+  touchDamagePerSecond: 2

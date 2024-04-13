@@ -23,4 +23,10 @@ public class Player : CharacterBase
     {
         MoveRigidbody();
     }
+
+    public override void Die()
+    {
+        base.Die();
+        print("Player dies");
+    }
 }
