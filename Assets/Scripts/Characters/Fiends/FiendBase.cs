@@ -11,7 +11,7 @@ namespace Fiend
             base.Awake();
         }
 
-        protected void SearchForTarget()
+        protected void SearchForMobTarget()
         {
             if (targetedEnemy == null || !targetedEnemy.IsValidTarget())
             {
@@ -29,6 +29,29 @@ namespace Fiend
                     character.ReceiveDamage(touchDamagePerSecond * Time.fixedDeltaTime);
                 }
             }
+        }
+
+        //Decides if fiend wants to chase an item like crystal or food, instead of an enemy. greedCofactor is how much he wants it
+        protected bool WillChaseCollectable(float greedCofactor)
+        {
+            bool willChaseCollectable = targetedCollectable != null;
+            //if (targetedCollectable && targetedEnemy)
+            //{
+            //    float distanceBetweenCrystal = Vector2.Distance(Transform.position, targetedCollectable.Transform.position);
+            //    float distanceBetweenEnemy = Vector2.Distance(Transform.position, targetedEnemy.Transform.position);
+
+            //    willChaseCollectable = distanceBetweenCrystal * greedCofactor < distanceBetweenEnemy;
+            //}
+            //else if (targetedCollectable)
+            //{
+            //    willChaseCollectable = true;
+            //}
+            //else
+            //{
+            //    willChaseCollectable = false;
+            //}
+
+            return willChaseCollectable;
         }
     }
 

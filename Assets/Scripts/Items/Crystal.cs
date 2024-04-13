@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CollectableItem
 {
-    public class Crystal : Collectable
+    public class Crystal : CollectableBase
     {
         public override void GetCollected(CharacterBase collector)
         {

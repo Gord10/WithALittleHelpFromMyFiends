@@ -46,7 +46,7 @@ public class Player : CharacterBase
     {
         if(collision.CompareTag("Collectable"))
         {
-            if(collision.gameObject.TryGetComponent<Collectable>(out Collectable collectable))
+            if(collision.gameObject.TryGetComponent<CollectableBase>(out CollectableBase collectable))
             {
                 collectable.GetCollected(this);
             }

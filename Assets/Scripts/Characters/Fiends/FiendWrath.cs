@@ -8,7 +8,7 @@ namespace Fiend
     {
         private void FixedUpdate()
         {
-            SearchForTarget();
+            SearchForMobTarget();
             MoveTowardsTargetEnemy();
         }
     }
