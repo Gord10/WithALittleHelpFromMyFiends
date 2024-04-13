@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterBase : MonoBehaviour
+public abstract class CharacterBase : MonoBehaviour
 {
     public float speed = 4;
     public float health = 10;
@@ -43,6 +43,15 @@ public class CharacterBase : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void SetMovementDirectionWithInput()
+    {
+        float movementX = Input.GetAxis("Horizontal");
+        float movementY = Input.GetAxis("Vertical");
+
+        movementDirection = new(movementX, movementY);
+        movementDirection = Vector2.ClampMagnitude(movementDirection, 1);
     }
 
     public virtual void Die()
