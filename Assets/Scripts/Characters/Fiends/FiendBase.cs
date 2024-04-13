@@ -35,26 +35,10 @@ namespace Fiend
             }
         }
 
-        //Decides if fiend wants to chase an item like crystal or food, instead of an enemy. greedCofactor is how much he wants it
+        //Decides if fiend wants to chase an item like crystal or food, instead of an enemy
         protected bool WillChaseCollectable()
         {
             bool willChaseCollectable = targetedCollectable != null;
-            //if (targetedCollectable && targetedEnemy)
-            //{
-            //    float distanceBetweenCrystal = Vector2.Distance(Transform.position, targetedCollectable.Transform.position);
-            //    float distanceBetweenEnemy = Vector2.Distance(Transform.position, targetedEnemy.Transform.position);
-
-            //    willChaseCollectable = distanceBetweenCrystal * greedCofactor < distanceBetweenEnemy;
-            //}
-            //else if (targetedCollectable)
-            //{
-            //    willChaseCollectable = true;
-            //}
-            //else
-            //{
-            //    willChaseCollectable = false;
-            //}
-
             return willChaseCollectable;
         }
 
@@ -76,7 +60,7 @@ namespace Fiend
             }
             else if(doesWantToDamagePlayer && targetedEnemy == null)
             {
-                SetTarget(GameManager.Instance.Player);
+                SetTarget(Player.Instance);
             }
 
             bool willChaseCrystal = WillChaseCollectable();

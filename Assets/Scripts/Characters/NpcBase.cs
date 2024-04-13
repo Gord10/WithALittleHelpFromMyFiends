@@ -15,6 +15,15 @@ public abstract class NpcBase : CharacterBase
         this.targetedEnemy = targetedEnemy;
     }
 
+    public void Spawn(Vector3 position)
+    {
+        health = MaxHealth;
+        transform.position = position;
+        rigidbody.velocity = Vector2.zero;
+        movementDirection = Vector2.zero;
+        gameObject.SetActive(true);
+    }
+
     public void MoveTowardsTargetEnemy()
     {
         if (targetedEnemy != null)

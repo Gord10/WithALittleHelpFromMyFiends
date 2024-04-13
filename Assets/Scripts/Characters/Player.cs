@@ -5,11 +5,26 @@ using UnityEngine;
 
 public class Player : CharacterBase
 {
+    public static Player Instance
+    {
+        get
+        {
+            if (!instance)
+            {
+                instance = FindObjectOfType<Player>();
+            }
+
+            return instance;
+        }
+    }
+    private static Player instance;
+
     GameUi gameUi;
 
     protected override void Awake()
     {
         base.Awake();
+        instance = this;
         gameUi = FindObjectOfType<GameUi>();
         gameUi.SetHpBar(health, MaxHealth);
     }

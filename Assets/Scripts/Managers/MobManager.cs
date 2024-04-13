@@ -7,6 +7,8 @@ public class MobManager : MonoBehaviour
     public static MobManager Instance => instance;
     static MobManager instance;
 
+    public float spawnInterval = 0.4f;
+    public int mobStartNum = 20;
     public Mob mobPrefab;
     public int maxMobAmount = 100;
 
@@ -21,11 +23,26 @@ public class MobManager : MonoBehaviour
 
         for(int i = 0; i < mobs.Length; i++)
         {
-            float x = i * 2.5f;
-            float y = 0;
-            Vector3 pos = new Vector3(x - 20, y + 5, 0);
-            mobs[i] = Instantiate(mobPrefab, pos, Quaternion.identity, transform);
+            mobs[i] = Instantiate(mobPrefab, transform);
             mobs[i].SetTarget(player);
+            mobs[i].gameObject.SetActive(false);
+        }
+
+        for(int i =0; i < mobStartNum; i++)
+        {
+            SpawnMob();
+        }
+
+        StartCoroutine(SpawnCoro());
+    }
+
+    IEnumerator SpawnCoro()
+    {
+        WaitForSeconds waitForSeconds = new WaitForSeconds(spawnInterval);
+        while(true)
+        {
+            yield return waitForSeconds;
+            SpawnMob();
         }
     }
 
@@ -57,5 +74,28 @@ public class MobManager : MonoBehaviour
         }
 
         return closestMob;
+    }
+
+    public void SpawnMob()
+    {
+        Mob mob = GetMobFromPool();
+        if(mob)
+        {
+            Vector3 randomPoint = GameManager.Instance.GetRandomPointInWorld();
+            mob.Spawn(randomPoint);
+        }
+    }
+
+    Mob GetMobFromPool()
+    {
+        for(int i = 0; i <  mobs.Length; i++)
+        {
+            if (mobs[i] && !mobs[i].gameObject.activeSelf)
+            {
+                return mobs[i];
+            }
+        }
+
+        return null;
     }
 }

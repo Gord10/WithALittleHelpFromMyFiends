@@ -32,6 +32,15 @@ namespace CollectableItem
         {
             return Vector2.Distance(Transform.position, point);
         }
+
+        public void Spawn(Vector3 position)
+        {
+            isCollectable = true;
+            spriteRenderer.enabled = true;
+            collider.enabled = true;
+            transform.position = position;
+            gameObject.SetActive(true);
+        }
     }
 }
 

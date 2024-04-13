@@ -11,6 +11,7 @@ public class Mob : NpcBase
     public override void Die()
     {
         base.Die();
+        GameManager.Instance.OnMobDeath(this);
         gameObject.SetActive(false);
     }
 }

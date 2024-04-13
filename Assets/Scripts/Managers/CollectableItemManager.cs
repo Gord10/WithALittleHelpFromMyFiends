@@ -8,15 +8,35 @@ public class CollectableItemManager : MonoBehaviour
     public static CollectableItemManager Instance => instance;
     static CollectableItemManager instance;
 
+    public Crystal crystalPrefab;
     public int maxCrystals;
+    public Transform crystalsFolder;
     Crystal[] crystals;
+
 
     HpPowerUp[] hpPowerUps;
 
     private void Awake()
     {
         instance = this;
-        crystals = FindObjectsOfType<Crystal>();
+        crystals = new Crystal[maxCrystals];
+
+        int i;
+        for(i = 0; i < crystals.Length; i++)
+        {
+            crystals[i] = Instantiate(crystalPrefab, crystalsFolder);
+            crystals[i].gameObject.SetActive(false);
+        }
+
+        Vector3 playerPos = Player.Instance.transform.position;
+        float maxCrystalPlayerDistance = 10;
+        //Spawn the crystals required to summon a fiend
+        for(i = 0; i < GameManager.Instance.requiredCrystalToSummon; i++)
+        {
+            Vector3 randomPoint = GameManager.GetRandomPointCloseToPoint(playerPos, maxCrystalPlayerDistance);
+            crystals[i].Spawn(randomPoint);
+        }
+
         hpPowerUps = FindObjectsOfType<HpPowerUp>();
     }
 
@@ -78,6 +98,20 @@ public class CollectableItemManager : MonoBehaviour
         }
 
         return B;
+    }
+
+    public Crystal GetCrystalFromPool()
+    {
+        int i;
+        for(i = 0; i < crystals.Length; i++)
+        {
+            if (!crystals[i].gameObject.activeSelf || !crystals[i].IsCollectable)
+            {
+                return crystals[i];
+            }
+        }
+
+        return null;
     }
 
 
