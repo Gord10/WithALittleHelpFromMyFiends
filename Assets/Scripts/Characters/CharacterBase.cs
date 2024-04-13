@@ -1,5 +1,7 @@
+using Fiend;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class CharacterBase : MonoBehaviour
@@ -10,11 +12,23 @@ public abstract class CharacterBase : MonoBehaviour
     protected Rigidbody2D rigidbody;
     protected Vector2 movementDirection;
 
-    public Transform Transform => cachedTransform;
+    public Transform Transform
+    {
+        get
+        {
+            if(cachedTransform == null)
+                cachedTransform = transform;
+            return cachedTransform;
+        }
+    }
+
     Transform cachedTransform;
 
     float maxHealth; //Assigned at Awake
     public float MaxHealth => maxHealth;
+
+    public bool IsSlowDown => isSlowDown;
+    protected bool isSlowDown = false;
 
     protected virtual void Awake()
     {
@@ -33,6 +47,27 @@ public abstract class CharacterBase : MonoBehaviour
     public void MoveRigidbody()
     {
         rigidbody.velocity = movementDirection * speed;
+
+        if(isSlowDown)
+        {
+            rigidbody.velocity *= GameManager.Instance.slowDownCofactor;
+        }
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (this is not FiendBase && collision.CompareTag("SlowDownArea"))
+        {
+            isSlowDown = true;
+        }
+    }
+
+    protected virtual void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("SlowDownArea"))
+        {
+            isSlowDown = false;
+        }
     }
 
     public bool IsValidTarget()

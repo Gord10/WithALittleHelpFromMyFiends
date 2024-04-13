@@ -26,7 +26,7 @@ namespace Fiend
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            if (collision.collider.CompareTag("Mob") || collision.collider.CompareTag("Player"))
+            if (touchDamagePerSecond > 0 && (collision.collider.CompareTag("Mob") || collision.collider.CompareTag("Player")))
             {
                 if (collision.gameObject.TryGetComponent(out CharacterBase character))
                 {

@@ -57,8 +57,9 @@ public class Player : CharacterBase
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
         if(collision.CompareTag("Collectable"))
         {
             if(collision.gameObject.TryGetComponent<CollectableBase>(out CollectableBase collectable))

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CollectableItem;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     public float gameWorldHalfWidth = 50;
     public float gameWorldHalfHeight = 50;
+    public float slowDownCofactor = 0.5f; //Characters that get close to Sloth will slow down by this cofactor
 
     int collectedCrystals = 0; //Used for summoning fiends. Resets to 0 after summoning a fiend.
 
@@ -52,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void OnMobDeath(Mob mob)
     {
-        if(CollectableItemManager.Instance.CanSpawnCrystal())
+        if(!mob.IsSlowDown && CollectableItemManager.Instance.CanSpawnCrystal())
         {
             Crystal crystal = CollectableItemManager.Instance.GetCrystalFromPool();
             crystal.Spawn(mob.Transform.position);
@@ -61,10 +63,19 @@ public class GameManager : MonoBehaviour
 
     public Vector3 GetRandomPointInWorld()
     {
-        float x = Random.Range(-gameWorldHalfWidth, gameWorldHalfWidth);
-        float y = Random.Range(-gameWorldHalfHeight, gameWorldHalfHeight);
+        float x, y;
+        float maxDistanceFromPlayer = 3;
+        Vector3 position;
 
-        return new Vector3(x, y, 0);
+        do
+        {
+            x = Random.Range(-gameWorldHalfWidth, gameWorldHalfWidth);
+            y = Random.Range(-gameWorldHalfHeight, gameWorldHalfHeight);
+            position = new Vector3(x, y, 0);
+        }
+        while (Player.Instance.IsPointTooCloseToMe(position, maxDistanceFromPlayer));
+
+        return position;
     }
 
     public static Vector3 GetRandomPointCloseToPoint(Vector3 point, float range)
