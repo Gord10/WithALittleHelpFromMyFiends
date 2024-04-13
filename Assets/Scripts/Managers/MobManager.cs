@@ -1,3 +1,4 @@
+using Fiend;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,15 +11,17 @@ public class MobManager : MonoBehaviour
     public float spawnInterval = 0.4f;
     public int mobStartNum = 20;
     public Mob mobPrefab;
-    public int maxMobAmount = 100;
+    public int mobPoolSize = 100;
 
     Mob[] mobs;
+
+    int mobsInSceneNum = 0;
 
     private void Awake()
     {
         instance = this;
 
-        mobs = new Mob[maxMobAmount];
+        mobs = new Mob[mobPoolSize];
         Player player = FindObjectOfType<Player>();
 
         for(int i = 0; i < mobs.Length; i++)
@@ -42,7 +45,10 @@ public class MobManager : MonoBehaviour
         while(true)
         {
             yield return waitForSeconds;
-            SpawnMob();
+            if (mobsInSceneNum < GetMobLimit())
+            {
+                SpawnMob();
+            }
         }
     }
 
@@ -83,7 +89,13 @@ public class MobManager : MonoBehaviour
         {
             Vector3 randomPoint = GameManager.Instance.GetRandomPointInWorld();
             mob.Spawn(randomPoint);
+            mobsInSceneNum++;
         }
+    }
+
+    public void OnMobDeath()
+    {
+        mobsInSceneNum--;
     }
 
     Mob GetMobFromPool()
@@ -99,23 +111,34 @@ public class MobManager : MonoBehaviour
         return null;
     }
 
-    public Mob GetRandomMobInRange(Vector3 pos, float range)
-    {
-        int attempts = 0;
-        int maxAttemptAllowed = 20;
-        int randomIndex = Random.Range(0, mobs.Length / 3);
+    //public Mob GetRandomMobInRange(Vector3 pos, float range)
+    //{
+    //    int attempts = 0;
+    //    int maxAttemptAllowed = 20;
+    //    int randomIndex = Random.Range(0, mobs.Length / 3);
 
-        while (attempts < maxAttemptAllowed)
+    //    while (attempts < maxAttemptAllowed)
+    //    {
+    //        Mob mob = mobs[randomIndex];
+    //        if (mob.IsValidTarget())
+    //        {
+    //            return mob;
+    //        }
+    //        attempts++;
+    //    }
+
+    //    return null;
+    //}
+
+    int GetMobLimit()
+    {
+        FiendBase nextFiend = FiendManager.Instance.GetFiendToSummon();
+        if(nextFiend)
         {
-            Mob mob = mobs[randomIndex];
-            if (mob.IsValidTarget())
-            {
-                return mob;
-            }
-            attempts++;
+            return nextFiend.maxMobNum;
         }
 
-        return null;
+        return mobPoolSize;
     }
 
 }

@@ -3,16 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class GameUi : MonoBehaviour
 {
     public Image hpBar;
     public Image xpBar;
     public float fillTweenSpeed = 1;
-    public void SetHpBar(float hp, float maxHp)
+    public TextMeshProUGUI infoText;
+
+    public void SetHpBar(float hp, float maxHp, bool willUseTween)
     {
         float fillAmount = hp / maxHp;
-        hpBar.fillAmount = fillAmount;
+
+        if(willUseTween)
+        {
+            hpBar.DOKill();
+            hpBar.DOFillAmount(fillAmount, fillTweenSpeed).SetSpeedBased();
+        }
+        else
+        {
+            hpBar.fillAmount = fillAmount;
+        }
     }
 
     public void SetXpBar(int crystalsNum, int requiredCrystalsNum)
@@ -28,5 +40,22 @@ public class GameUi : MonoBehaviour
         {
             xpBar.DOFillAmount(fillAmount, fillTweenSpeed).SetSpeedBased();
         }
+    }
+
+    public void ShowText(string text)
+    {
+        infoText.text = text;
+        infoText.gameObject.SetActive(true);
+    }
+
+    public void HideText()
+    {
+        infoText.gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        xpBar.DOKill();
+        hpBar.DOKill();
     }
 }

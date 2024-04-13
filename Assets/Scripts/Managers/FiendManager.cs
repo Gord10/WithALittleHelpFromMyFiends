@@ -15,13 +15,27 @@ public class FiendManager : MonoBehaviour
     {
         instance = this;
     }
-    public void Summon()
+
+    public FiendBase Summon()
     {
-        FiendBase fiend = fiends[fiendIndexToSummon];
+        FiendBase fiend = GetFiendToSummon();
         float playerDistanceRange = 6;
         Vector3 pos = GameManager.GetRandomPointCloseToPoint(Player.Instance.Transform.position, playerDistanceRange);
         fiend.gameObject.SetActive(true);
         fiend.Spawn(pos);
+        
         fiendIndexToSummon++;
+
+        return fiend;
+    }
+
+    public FiendBase GetFiendToSummon()
+    {
+        if(fiendIndexToSummon < fiends.Length)
+        {
+            return fiends[fiendIndexToSummon];
+        }
+
+        return null;
     }
 }

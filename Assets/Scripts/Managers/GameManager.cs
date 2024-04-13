@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using CollectableItem;
+using Fiend;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -27,6 +28,15 @@ public class GameManager : MonoBehaviour
     public float slowDownCofactor = 0.5f; //Characters that get close to Sloth will slow down by this cofactor
 
     int collectedCrystals = 0; //Used for summoning fiends. Resets to 0 after summoning a fiend.
+    GameCamera gameCamera;
+
+    public enum State
+    {
+        IN_GAME,
+        INTRODUCING_FIEND
+    }
+
+    public State state = State.IN_GAME;
 
     GameUi gameUi;
     Player player;
@@ -35,8 +45,11 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         player = FindObjectOfType(typeof(Player)) as Player;
+        gameCamera = FindObjectOfType<GameCamera>();
         gameUi = FindObjectOfType<GameUi>();
         gameUi.SetXpBar(collectedCrystals, requiredCrystalToSummon);
+
+        gameUi.ShowText($"Collect {requiredCrystalToSummon} crystals to summon a fiend");
     }
 
     public void OnCrystalCollection(Crystal crystal)
@@ -46,10 +59,19 @@ public class GameManager : MonoBehaviour
         while(collectedCrystals >= requiredCrystalToSummon)
         {
             collectedCrystals -= requiredCrystalToSummon;
-            FiendManager.Instance.Summon();
+            Summon();
         }
 
         gameUi.SetXpBar(collectedCrystals, requiredCrystalToSummon);
+    }
+
+    void Summon()
+    {
+        state = State.INTRODUCING_FIEND;
+        Time.timeScale = 0;
+        FiendBase fiend = FiendManager.Instance.Summon();
+        gameCamera.ShowFiend(fiend.Transform);
+        gameUi.ShowText(fiend.description);
     }
 
     public void OnMobDeath(Mob mob)
@@ -59,6 +81,8 @@ public class GameManager : MonoBehaviour
             Crystal crystal = CollectableItemManager.Instance.GetCrystalFromPool();
             crystal.Spawn(mob.Transform.position);
         }
+
+        MobManager.Instance.OnMobDeath();
     }
 
     public Vector3 GetRandomPointInWorld()
@@ -93,5 +117,22 @@ public class GameManager : MonoBehaviour
 
 
         return point + circle;
+    }
+
+    public bool IsMovementAllowed()
+    {
+        return state == State.IN_GAME;
+    }
+
+    public void EndFiendIntroduction()
+    {
+        gameCamera.ShowPlayer(player.Transform);
+        gameUi.HideText();
+    }
+
+    public void ContinueGame()
+    {
+        state = State.IN_GAME;
+        Time.timeScale = 1;
     }
 }

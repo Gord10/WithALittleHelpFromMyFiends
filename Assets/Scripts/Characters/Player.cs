@@ -26,7 +26,7 @@ public class Player : CharacterBase
         base.Awake();
         instance = this;
         gameUi = FindObjectOfType<GameUi>();
-        gameUi.SetHpBar(health, MaxHealth);
+        gameUi.SetHpBar(health, MaxHealth, false);
     }
 
     // Update is called once per frame
@@ -72,14 +72,15 @@ public class Player : CharacterBase
     public override void ReceiveDamage(float damage)
     {
         base.ReceiveDamage(damage);
-        gameUi.SetHpBar(health, MaxHealth);
+        bool willShowTween = damage > 0.1f;
+        gameUi.SetHpBar(health, MaxHealth, willShowTween);
     }
 
     public void IncreaseHealth(float increase)
     {
         health += increase;
         health = Mathf.Clamp(health, 0, MaxHealth);
-        gameUi.SetHpBar(health, MaxHealth);
+        gameUi.SetHpBar(health, MaxHealth, true);
     }
 
     public bool IsPointTooCloseToMe(Vector3 point, float maxDistance)

@@ -20,6 +20,11 @@ namespace Fiend
         private void FixedUpdate()
         {
             SearchForMobTarget();
+            if(targetedEnemy && targetedEnemy is not Player && targetedEnemy.DistanceFromObject(Transform) > Player.Instance.DistanceFromObject(Transform))
+            {
+                SetTarget(Player.Instance);
+            }
+
             MoveTowardsTargetEnemy();
         }
 
@@ -29,11 +34,11 @@ namespace Fiend
             while(true)
             {
                 yield return wait;
-                Mob mob = MobManager.Instance.GetClosestMobAlive(Transform.position);
+                //Mob mob = MobManager.Instance.GetClosestMobAlive(Transform.position);
                 Vector2 direction;
-                if(mob != null)
+                if(targetedEnemy != null)
                 {
-                    direction = mob.Transform.position - Transform.position;
+                    direction = targetedEnemy.Transform.position - Transform.position;
                     direction.Normalize();
                 }
                 else

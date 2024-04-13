@@ -46,11 +46,18 @@ public abstract class CharacterBase : MonoBehaviour
 
     public void MoveRigidbody()
     {
-        rigidbody.velocity = movementDirection * speed;
-
-        if(isSlowDown)
+        if(GameManager.Instance.IsMovementAllowed())
         {
-            rigidbody.velocity *= GameManager.Instance.slowDownCofactor;
+            rigidbody.velocity = movementDirection * speed;
+
+            if (isSlowDown)
+            {
+                rigidbody.velocity *= GameManager.Instance.slowDownCofactor;
+            }
+        }
+        else
+        {
+            rigidbody.velocity = Vector2.zero;
         }
     }
 
@@ -95,5 +102,10 @@ public abstract class CharacterBase : MonoBehaviour
 
     public virtual void Die()
     {
+    }
+
+    public float DistanceFromObject(Transform other)
+    {
+        return Vector2.Distance(Transform.position, other.position);
     }
 }

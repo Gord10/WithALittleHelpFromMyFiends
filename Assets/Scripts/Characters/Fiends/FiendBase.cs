@@ -7,8 +7,10 @@ namespace Fiend
 {
     public class FiendBase : NpcBase
     {
+        public string description;
         public bool doesWantToDamagePlayer = false;
         public bool doesWantToDamageMobs = true;
+        public int maxMobNum = 10;
 
         protected override void Awake()
         {
@@ -17,11 +19,12 @@ namespace Fiend
 
         protected void SearchForMobTarget()
         {
-            if (targetedEnemy == null || !targetedEnemy.IsValidTarget())
-            {
-                Mob closestMob = MobManager.Instance.GetClosestMobAlive(Transform.position);
-                SetTarget(closestMob);
-            }
+            Mob closestMob = MobManager.Instance.GetClosestMobAlive(Transform.position);
+            SetTarget(closestMob);
+            //if (targetedEnemy == null || !targetedEnemy.IsValidTarget())
+            //{
+
+            //}
         }
 
         private void OnCollisionStay2D(Collision2D collision)
