@@ -154,6 +154,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1327043419}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &344514377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 344514379}
+  - component: {fileID: 344514378}
+  m_Layer: 0
+  m_Name: Fiend Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &344514378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344514377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84edd7e1d4b694247affa693b73ac42d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fiends:
+  - {fileID: 1497077503}
+--- !u!4 &344514379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344514377}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 498048418}
+  - {fileID: 509642487}
+  - {fileID: 1339689850}
+  - {fileID: 1497077502}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &498048413
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +217,7 @@ GameObject:
   - component: {fileID: 498048416}
   - component: {fileID: 498048415}
   - component: {fileID: 498048414}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fiend Envy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,12 +364,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498048413}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 9.47, y: -3.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 344514379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &509642482
 GameObject:
@@ -334,7 +384,7 @@ GameObject:
   - component: {fileID: 509642485}
   - component: {fileID: 509642484}
   - component: {fileID: 509642483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fiend Gluttony
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,12 +531,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 509642482}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.09, y: -5.23, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 344514379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &551214105
 GameObject:
@@ -752,6 +802,7 @@ MonoBehaviour:
   crystalPrefab: {fileID: 7513718521648077868, guid: 7d84b9a3f69335e4e856d93dd1af5b59, type: 3}
   maxCrystals: 200
   crystalsFolder: {fileID: 245465397}
+  crystalSpawnProbability: 0.2
 --- !u!4 &1327043419
 Transform:
   m_ObjectHideFlags: 0
@@ -781,7 +832,7 @@ GameObject:
   - component: {fileID: 1339689848}
   - component: {fileID: 1339689847}
   - component: {fileID: 1339689846}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fiend Greed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,12 +979,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339689845}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.68, y: -5.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 344514379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1360199784
 GameObject:
@@ -1092,7 +1143,7 @@ GameObject:
   - component: {fileID: 1497077500}
   - component: {fileID: 1497077499}
   - component: {fileID: 1497077503}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fiend Wrath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1221,12 +1272,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497077497}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.43, y: 1.1053241, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 344514379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1497077503
 MonoBehaviour:
@@ -1240,11 +1291,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b703b6aaa42e84e87ff696f0450d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 1
   health: 10
   touchDamagePerSecond: 6
   doesWantToDamagePlayer: 0
   doesWantToDamageMobs: 1
+  projectilePrefab: {fileID: 2880774510139718016, guid: 2eb8a8de796f7414db7f79d0f4773491, type: 3}
+  projectileLaunchInterval: 0.6
 --- !u!1 &1689423246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,11 +1546,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2533008375429155965, guid: 3f0b59c868102a14cb6bd18c81ade9f1, type: 3}
       propertyPath: gameWorldHalfWidth
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2533008375429155965, guid: 3f0b59c868102a14cb6bd18c81ade9f1, type: 3}
       propertyPath: gameWorldHalfHeight
-      value: 20
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533008375429155965, guid: 3f0b59c868102a14cb6bd18c81ade9f1, type: 3}
+      propertyPath: requiredCrystalToSummon
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1557,8 +1614,12 @@ PrefabInstance:
       value: Mob Manager
       objectReference: {fileID: 0}
     - target: {fileID: 9042006516819683108, guid: a86d1146911f4834bab6c8903dc8d25a, type: 3}
+      propertyPath: mobStartNum
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042006516819683108, guid: a86d1146911f4834bab6c8903dc8d25a, type: 3}
       propertyPath: spawnInterval
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9042006516819683108, guid: a86d1146911f4834bab6c8903dc8d25a, type: 3}
       propertyPath: mobStartNumber
@@ -1691,11 +1752,8 @@ SceneRoots:
   - {fileID: 5620664560572826485}
   - {fileID: 1101789333610973562}
   - {fileID: 1571770749077619819}
-  - {fileID: 1497077502}
-  - {fileID: 498048418}
-  - {fileID: 1339689850}
-  - {fileID: 509642487}
   - {fileID: 1961014580}
   - {fileID: 1360199787}
   - {fileID: 1327043419}
   - {fileID: 1611785202999505584}
+  - {fileID: 344514379}

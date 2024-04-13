@@ -19,7 +19,12 @@ public abstract class NpcBase : CharacterBase
     {
         health = MaxHealth;
         transform.position = position;
-        rigidbody.velocity = Vector2.zero;
+
+        if(rigidbody != null)
+        {
+            rigidbody.velocity = Vector2.zero;
+        }
+        
         movementDirection = Vector2.zero;
         gameObject.SetActive(true);
     }

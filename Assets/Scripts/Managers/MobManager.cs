@@ -59,7 +59,7 @@ public class MobManager : MonoBehaviour
         float minDistance = float.MaxValue;
         Mob closestMob = null;
 
-        for(int i = 0;i < mobs.Length;i++)
+        for(int i = 0; i < mobs.Length;i++)
         {
             Mob mob = mobs[i];
             if(mob.IsValidTarget())
@@ -98,4 +98,24 @@ public class MobManager : MonoBehaviour
 
         return null;
     }
+
+    public Mob GetRandomMobInRange(Vector3 pos, float range)
+    {
+        int attempts = 0;
+        int maxAttemptAllowed = 20;
+        int randomIndex = Random.Range(0, mobs.Length / 3);
+
+        while (attempts < maxAttemptAllowed)
+        {
+            Mob mob = mobs[randomIndex];
+            if (mob.IsValidTarget())
+            {
+                return mob;
+            }
+            attempts++;
+        }
+
+        return null;
+    }
+
 }

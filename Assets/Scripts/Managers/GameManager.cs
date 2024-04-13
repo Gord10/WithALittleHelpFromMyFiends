@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         while(collectedCrystals >= requiredCrystalToSummon)
         {
             collectedCrystals -= requiredCrystalToSummon;
+            FiendManager.Instance.Summon();
         }
 
         gameUi.SetXpBar(collectedCrystals, requiredCrystalToSummon);
@@ -49,8 +50,11 @@ public class GameManager : MonoBehaviour
 
     public void OnMobDeath(Mob mob)
     {
-        Crystal crystal = CollectableItemManager.Instance.GetCrystalFromPool();
-        crystal.Spawn(mob.Transform.position);
+        if(CollectableItemManager.Instance.CanSpawnCrystal())
+        {
+            Crystal crystal = CollectableItemManager.Instance.GetCrystalFromPool();
+            crystal.Spawn(mob.Transform.position);
+        }
     }
 
     public Vector3 GetRandomPointInWorld()

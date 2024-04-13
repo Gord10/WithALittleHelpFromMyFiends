@@ -11,9 +11,9 @@ public class CollectableItemManager : MonoBehaviour
     public Crystal crystalPrefab;
     public int maxCrystals;
     public Transform crystalsFolder;
+    public float crystalSpawnProbability = 0.1f;
+
     Crystal[] crystals;
-
-
     HpPowerUp[] hpPowerUps;
 
     private void Awake()
@@ -114,5 +114,8 @@ public class CollectableItemManager : MonoBehaviour
         return null;
     }
 
-
+    public bool CanSpawnCrystal()
+    {
+        return Random.value <= crystalSpawnProbability; 
+    }
 }
