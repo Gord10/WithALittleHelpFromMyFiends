@@ -13,7 +13,7 @@ namespace CollectableItem
         bool isCollectable = true;
 
         public SpriteRenderer spriteRenderer;
-        public Collider2D collider;
+        new public Collider2D collider;
 
         LightSource lightSource;
 

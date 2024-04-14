@@ -7,7 +7,7 @@ public class LightSource : MonoBehaviour
 {
     public float changeTime = 1;
 
-    Light2D light;
+    new Light2D light;
     float defaultLightIntensity;
 
     Coroutine coroutine;

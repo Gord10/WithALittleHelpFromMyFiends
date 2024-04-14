@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     public float damage = 3;
     public float lifeTime = 4;
 
-    Rigidbody2D rigidbody;
+    new Rigidbody2D rigidbody;
     Vector2 direction;
     float launchTime;
     LightSource lightSource;

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Fiend;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,10 +10,10 @@ public abstract class CharacterBase : MonoBehaviour
     public float speed = 4;
     public float health = 10;
 
-    protected Rigidbody2D rigidbody;
+    new protected Rigidbody2D rigidbody;
     protected Vector2 movementDirection;
     protected Animator animator;
-    protected Collider2D collider;
+    new protected Collider2D collider;
 
     public Transform Transform
     {
@@ -120,8 +121,11 @@ public abstract class CharacterBase : MonoBehaviour
 
         movementDirection = new(movementX, movementY);
         movementDirection = Vector2.ClampMagnitude(movementDirection, 1);
+    }
 
-
+    protected virtual void OnDestroy()
+    {
+        spriteRenderer.DOKill();
     }
 
     public virtual void Die()

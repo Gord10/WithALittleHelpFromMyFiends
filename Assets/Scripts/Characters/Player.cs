@@ -43,7 +43,7 @@ public class Player : CharacterBase
     public override void Die()
     {
         base.Die();
-        print("Player dies");
+        GameManager.RestartLevel();
     }
 
     private void OnCollisionStay2D(Collision2D collision)

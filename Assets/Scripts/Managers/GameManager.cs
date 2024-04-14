@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using CollectableItem;
 using Fiend;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,6 +48,7 @@ public class GameManager : MonoBehaviour
         gameUi.SetXpBar(collectedCrystals, requiredCrystalToSummon);
 
         gameUi.ShowText($"Collect {requiredCrystalToSummon} crystals to summon a fiend");
+        Time.timeScale = 1.0f;
     }
 
     public void OnCrystalCollection(Crystal crystal)
@@ -136,13 +135,21 @@ public class GameManager : MonoBehaviour
         state = State.IN_GAME;
         Time.timeScale = 1;
     }
-#if UNITY_EDITOR
+
+    public static void RestartLevel()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
+    }
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.X) && state == State.IN_GAME)
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.X) && state == State.IN_GAME)
         {
             Summon();
         }
-    }
 #endif
+    }
+
 }
