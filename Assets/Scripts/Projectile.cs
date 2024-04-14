@@ -46,8 +46,9 @@ public class Projectile : MonoBehaviour
             if(collision.collider.TryGetComponent(out CharacterBase character))
             {
                 character.ReceiveDamage(damage);
-                gameObject.SetActive(false);
             }
         }
+
+        gameObject.SetActive(false);
     }
 }

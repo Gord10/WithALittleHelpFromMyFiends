@@ -9,12 +9,19 @@ namespace Fiend
     {
         public float range = 10;
 
-        private void FixedUpdate()
+        protected override void Awake()
         {
-            ChaseCollectableItem(range);
+            base.Awake();
+            SetTarget(Player.Instance);
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void FixedUpdate()
+        {
+            MoveTowardsTargetEnemy();
+            //ChaseCollectableItem(range);
+        }
+
+        protected void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Collectable"))
             {
@@ -28,26 +35,6 @@ namespace Fiend
         protected override CollectableBase FindDesiredCollectableItem(float range)
         {
             return CollectableItemManager.Instance.GetClosestItem(Transform.position, range);
-            //HpPowerUp closestPowerUp = CollectableItemManager.Instance.GetClosestHpPowerUp(Transform.position, range);
-            //Crystal closestCrystal = CollectableItemManager.Instance.GetClosestCrystal(Transform.position, range);
-
-            //if(closestPowerUp && closestCrystal)
-            //{
-            //    return CollectableItemManager.Instance.GetClosestItem(Transform.position, range);
-            //}
-
-            //if(closestPowerUp)
-            //{
-            //    return closestPowerUp;
-            //}
-
-            //if(closestCrystal)
-            //{
-            //    return 
-            //}
-
-            //return null;
-
         }
     }
 }

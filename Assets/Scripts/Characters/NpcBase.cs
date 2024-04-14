@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CollectableItem;
+using DG.Tweening;
 
 public abstract class NpcBase : CharacterBase
 {
@@ -27,6 +28,21 @@ public abstract class NpcBase : CharacterBase
         
         movementDirection = Vector2.zero;
         gameObject.SetActive(true);
+        
+        animator.speed = 1;
+        Color color = spriteRenderer.color;
+        color.a = 0;
+        spriteRenderer.color = color;
+
+        float spawnFadeInTime = 2;
+        spriteRenderer.DOFade(1, spawnFadeInTime).SetUpdate(true);
+
+        isSlowDown = false;
+
+        if(collider != null)
+        {
+            collider.enabled = true;
+        }
     }
 
     public void MoveTowardsTargetEnemy()

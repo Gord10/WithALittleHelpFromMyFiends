@@ -88,16 +88,17 @@ public class GameManager : MonoBehaviour
     public Vector3 GetRandomPointInWorld()
     {
         float x, y;
-        float maxDistanceFromPlayer = 1;
+        float maxDistanceFromPlayer = 0.7f;
         Vector3 position;
 
-        //do
-        //{
+        //Make sure this point is not too close to the player
+        do
+        {
             x = Random.Range(-gameWorldHalfWidth, gameWorldHalfWidth);
             y = Random.Range(-gameWorldHalfHeight, gameWorldHalfHeight);
             position = new Vector3(x, y, 0);
-        //}
-        //while (Player.Instance.IsPointTooCloseToMe(position, maxDistanceFromPlayer));
+        }
+        while (Player.Instance.IsPointTooCloseToMe(position, maxDistanceFromPlayer));
 
         return position;
     }

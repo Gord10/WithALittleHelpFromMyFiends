@@ -12,6 +12,7 @@ public abstract class CharacterBase : MonoBehaviour
     protected Rigidbody2D rigidbody;
     protected Vector2 movementDirection;
     protected Animator animator;
+    protected Collider2D collider;
 
     public Transform Transform
     {
@@ -41,6 +42,7 @@ public abstract class CharacterBase : MonoBehaviour
         maxHealth = health;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        collider = GetComponent<Collider2D>();
     }
 
     protected void SetDirectionTowardsTarget(Vector3 targetPosition)
@@ -53,20 +55,23 @@ public abstract class CharacterBase : MonoBehaviour
     {
         if(GameManager.Instance.IsMovementAllowed())
         {
-            rigidbody.velocity = movementDirection * speed;
+            if (health > 0)
+            {
+                rigidbody.velocity = movementDirection * speed;
 
-            if(movementDirection.x > 0)
-            {
-                spriteRenderer.flipX = true;
-            }
-            else if(movementDirection.x < 0)
-            {
-                spriteRenderer.flipX = false;
-            }
+                if (movementDirection.x > 0)
+                {
+                    spriteRenderer.flipX = true;
+                }
+                else if (movementDirection.x < 0)
+                {
+                    spriteRenderer.flipX = false;
+                }
 
-            if (isSlowDown)
-            {
-                rigidbody.velocity *= GameManager.Instance.slowDownCofactor;
+                if (isSlowDown)
+                {
+                    rigidbody.velocity *= GameManager.Instance.slowDownCofactor;
+                }
             }
         }
         else
@@ -121,6 +126,7 @@ public abstract class CharacterBase : MonoBehaviour
 
     public virtual void Die()
     {
+        collider.enabled = false;
     }
 
     public float DistanceFromObject(Transform other)
