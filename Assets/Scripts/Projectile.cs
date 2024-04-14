@@ -11,10 +11,13 @@ public class Projectile : MonoBehaviour
     Rigidbody2D rigidbody;
     Vector2 direction;
     float launchTime;
+    LightSource lightSource;
+
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        lightSource = GetComponent<LightSource>();
     }
 
     public void Launch(Vector3 position, Vector3 direction)
@@ -23,6 +26,7 @@ public class Projectile : MonoBehaviour
         this.direction = direction;
         launchTime = Time.time;
         gameObject.SetActive(true);
+        lightSource?.TurnOn(true);
     }
 
     private void FixedUpdate()

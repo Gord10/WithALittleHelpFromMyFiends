@@ -8,19 +8,19 @@ using System;
 public class GameCamera : MonoBehaviour
 {
     public float movementSpeed = 1;
-    float localZ;
+    Vector3 defaultLocalPos;
 
     bool isWaitingForInputToEndFiendIntroduction = false;
 
     private void Awake()
     {
-        localZ = transform.localPosition.z;
+        defaultLocalPos = transform.localPosition;
     }
 
     public void ShowFiend(Transform t)
     {
         transform.SetParent(t);
-        transform.DOLocalMove(new Vector3(0, 0, localZ), movementSpeed).
+        transform.DOLocalMove(defaultLocalPos, movementSpeed).
             SetSpeedBased().
             SetUpdate(true).
             OnComplete(() => { isWaitingForInputToEndFiendIntroduction = true; });
@@ -29,7 +29,7 @@ public class GameCamera : MonoBehaviour
     public void ShowPlayer(Transform t)
     {
         transform.SetParent(t);
-        transform.DOLocalMove(new Vector3(0, 0, localZ), movementSpeed).
+        transform.DOLocalMove(defaultLocalPos, movementSpeed).
             SetSpeedBased().
             SetUpdate(true).
             OnComplete(() => { GameManager.Instance.ContinueGame(); });

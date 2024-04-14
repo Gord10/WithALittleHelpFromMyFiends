@@ -15,9 +15,12 @@ namespace CollectableItem
         public SpriteRenderer spriteRenderer;
         public Collider2D collider;
 
+        LightSource lightSource;
+
         protected virtual void Awake()
         {
             cachedTransform = transform;
+            lightSource = GetComponent<LightSource>();
         }
 
         public virtual void GetCollected(CharacterBase collector)
@@ -25,7 +28,11 @@ namespace CollectableItem
             isCollectable = false;
             spriteRenderer.enabled = false;
             collider.enabled = false;
-            //gameObject.SetActive(false);
+
+            if(lightSource != null)
+            {
+                lightSource.TurnOff();
+            }
         }
 
         public float GetDistance(Vector3 point)
@@ -40,6 +47,11 @@ namespace CollectableItem
             collider.enabled = true;
             transform.position = position;
             gameObject.SetActive(true);
+
+            if (lightSource != null)
+            {
+                lightSource.TurnOn(willStartFromZero: true);
+            }
         }
     }
 }

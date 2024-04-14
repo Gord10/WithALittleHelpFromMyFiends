@@ -30,12 +30,15 @@ public abstract class CharacterBase : MonoBehaviour
     public bool IsSlowDown => isSlowDown;
     protected bool isSlowDown = false;
 
+    protected SpriteRenderer spriteRenderer;
+
     protected virtual void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         cachedTransform = transform;
         movementDirection = new();
         maxHealth = health;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     protected void SetDirectionTowardsTarget(Vector3 targetPosition)
@@ -49,6 +52,15 @@ public abstract class CharacterBase : MonoBehaviour
         if(GameManager.Instance.IsMovementAllowed())
         {
             rigidbody.velocity = movementDirection * speed;
+
+            if(movementDirection.x > 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if(movementDirection.x < 0)
+            {
+                spriteRenderer.flipX = false;
+            }
 
             if (isSlowDown)
             {
