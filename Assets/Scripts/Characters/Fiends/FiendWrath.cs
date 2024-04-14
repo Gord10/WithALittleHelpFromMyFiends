@@ -25,7 +25,6 @@ namespace Fiend
                 return;
             }
 
-
             SearchForMobTarget();
             if(targetedEnemy && targetedEnemy is not Player && targetedEnemy.DistanceFromObject(Transform) > Player.Instance.DistanceFromObject(Transform))
             {
@@ -41,7 +40,6 @@ namespace Fiend
             while(true)
             {
                 yield return wait;
-                //Mob mob = MobManager.Instance.GetClosestMobAlive(Transform.position);
                 Vector2 direction;
                 if(targetedEnemy != null)
                 {

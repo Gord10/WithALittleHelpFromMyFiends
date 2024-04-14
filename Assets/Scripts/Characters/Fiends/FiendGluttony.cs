@@ -23,6 +23,7 @@ namespace Fiend
 
         protected override void OnTriggerEnter2D(Collider2D collision)
         {
+            base.OnTriggerEnter2D(collision);
             if (collision.CompareTag("Collectable"))
             {
                 if (collision.gameObject.TryGetComponent<HpPowerUp>(out HpPowerUp hpPowerUp))
