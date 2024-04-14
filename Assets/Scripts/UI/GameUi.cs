@@ -75,7 +75,10 @@ public class GameUi : MonoBehaviour
     public void HideExitText()
     {
         print("Hide exit text");
-        exitText.gameObject.SetActive(false);
+        if(exitText != null)
+        {
+            exitText.gameObject.SetActive(false);
+        }
     }
 
     public void UpdateFiendCounter(int summonedAmount)

@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         IN_GAME_RUNNING_FIEND_ZONE
     }
 
-    public State state = State.IN_GAME_SUMMONING;
+    State state = State.IN_GAME_SUMMONING;
 
     GameUi gameUi;
     Player player;

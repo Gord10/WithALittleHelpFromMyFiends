@@ -31,8 +31,6 @@ public class FiendManager : MonoBehaviour
         return fiend;
     }
 
-    
-
     public FiendBase GetFiendToSummon()
     {
         if(fiendIndexToSummon < fiends.Length)

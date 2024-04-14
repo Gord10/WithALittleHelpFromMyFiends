@@ -177,7 +177,7 @@ MonoBehaviour:
   touchDamagePerSecond: 0
   fadeOutTime: 1
   fadeInTime: 1
-  description: Don't get near Sloth. You will feel sleepy, too.
+  description: Don't get near Fiend. You will feel sleepy, too.
   doesWantToDamagePlayer: 0
   doesWantToDamageMobs: 1
   maxMobNum: 10
@@ -516,7 +516,7 @@ MonoBehaviour:
   touchDamagePerSecond: 2
   fadeOutTime: 1
   fadeInTime: 1
-  description: None can be better than Envious Fiend. Not even you.
+  description: None can be better than Fiend. Not even you.
   doesWantToDamagePlayer: 1
   doesWantToDamageMobs: 0
   maxMobNum: 50
@@ -714,12 +714,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0b9d5d5a4456c44aabd0312011d523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.6
+  speed: 0.5
   health: 10
   touchDamagePerSecond: 2
   fadeOutTime: 1
   fadeInTime: 1
-  description: Glutton Fiend is always hungry
+  description: Fiend is always hungry
   doesWantToDamagePlayer: 0
   doesWantToDamageMobs: 1
   maxMobNum: 30
@@ -1184,7 +1184,7 @@ MonoBehaviour:
   touchDamagePerSecond: 3
   fadeOutTime: 1
   fadeInTime: 1
-  description: This fiend will attack any mobs on his way
+  description: Fiend will attack the mobs for your approval
   doesWantToDamagePlayer: 0
   doesWantToDamageMobs: 1
   maxMobNum: 40
@@ -1708,7 +1708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8b619b130254847b2f3c2beed5b690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.4
+  speed: 0.9
   health: 10
   touchDamagePerSecond: 7
   fadeOutTime: 1
@@ -2055,12 +2055,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ca19d59ed6fcc449f987aeefffd989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.8
+  speed: 0.6
   health: 10
   touchDamagePerSecond: 2
   fadeOutTime: 1
   fadeInTime: 1
-  description: Greedy Fiend has an Insatiable need to collect the crystals
+  description: Fiend has an insatiable need to collect the crystals
   doesWantToDamagePlayer: 0
   doesWantToDamageMobs: 1
   maxMobNum: 30
@@ -2621,7 +2621,7 @@ MonoBehaviour:
   touchDamagePerSecond: 6
   fadeOutTime: 1
   fadeInTime: 1
-  description: Wrathful Fiend shall annihilate anyone on sight
+  description: Fiend shall annihilate anyone on sight
   doesWantToDamagePlayer: 1
   doesWantToDamageMobs: 1
   maxMobNum: 7
@@ -79329,6 +79329,10 @@ PrefabInstance:
     - target: {fileID: 2209593750894079737, guid: 3f0b59c868102a14cb6bd18c81ade9f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533008375429155965, guid: 3f0b59c868102a14cb6bd18c81ade9f1, type: 3}
+      propertyPath: slowDownCofactor
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2533008375429155965, guid: 3f0b59c868102a14cb6bd18c81ade9f1, type: 3}
       propertyPath: gameWorldHalfWidth
