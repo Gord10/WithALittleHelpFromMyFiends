@@ -13,11 +13,15 @@ public class GameUi : MonoBehaviour
     public TextMeshProUGUI infoText;
     public TextMeshProUGUI exitText;
     public TextMeshProUGUI fiendCounterText;
+    public GameObject attackInfoText;
+
+    static bool didWeShowAttackInfoText = false;
 
     private void Awake()
     {
         exitText.gameObject.SetActive(false);
         fiendCounterText.gameObject.SetActive(false);
+        attackInfoText.gameObject.SetActive(false);
     }
 
     public void SetHpBar(float hp, float maxHp, bool willUseTween)
@@ -85,5 +89,21 @@ public class GameUi : MonoBehaviour
     {
         fiendCounterText.text = $"Fiends:\n{summonedAmount.ToString()}/7";
         fiendCounterText.gameObject.SetActive(true);
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0) && !didWeShowAttackInfoText)
+        {
+            attackInfoText.SetActive(true);
+            didWeShowAttackInfoText = true;
+            StartCoroutine(DisableAttackInfoText(3));
+        }
+    }
+
+    IEnumerator DisableAttackInfoText(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        attackInfoText.SetActive(false);
     }
 }

@@ -54,6 +54,11 @@ public class GameManager : MonoBehaviour
 
     public void OnCrystalCollection(Crystal crystal)
     {
+        if(state == State.IN_GAME_RUNNING_FIEND_ZONE)
+        {
+            return;
+        }
+
         collectedCrystals += crystal.value;
 
         while(collectedCrystals >= requiredCrystalToSummon)
@@ -139,8 +144,22 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
-        state = (FiendManager.Instance.AreAllFiendsSummoned()) ? State.IN_GAME_RUNNING_FIEND_ZONE : State.IN_GAME_SUMMONING;
+        if(FiendManager.Instance.AreAllFiendsSummoned())
+        {
+            StartEscapeMode();
+        }
+        else
+        {
+            state = State.IN_GAME_SUMMONING;
+        }
+
         Time.timeScale = 1;
+    }
+
+    void StartEscapeMode()
+    {
+        state = State.IN_GAME_RUNNING_FIEND_ZONE;
+        MobManager.Instance.KillAllMobs();
     }
 
     public static void RestartLevel()

@@ -17,10 +17,12 @@ public class MobManager : MonoBehaviour
 
     int mobsInSceneNum = 0;
 
+    GameManager gameManager;
+
     private void Awake()
     {
         instance = this;
-
+        gameManager = GameManager.Instance;
         mobs = new Mob[mobPoolSize];
         Player player = FindObjectOfType<Player>();
 
@@ -42,10 +44,10 @@ public class MobManager : MonoBehaviour
     IEnumerator SpawnCoro()
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(spawnInterval);
-        while(true)
+        while(!gameManager.IsInEscapeState())
         {
             yield return waitForSeconds;
-            if (mobsInSceneNum < GetMobLimit())
+            if (mobsInSceneNum < GetMobLimit() && !gameManager.IsInEscapeState())
             {
                 SpawnMob();
             }
@@ -129,6 +131,14 @@ public class MobManager : MonoBehaviour
 
     //    return null;
     //}
+
+    public void KillAllMobs()
+    {
+        for(int i = 0;i < mobs.Length;i++)
+        {
+            mobs[i].Die();
+        }
+    }
 
     int GetMobLimit()
     {
