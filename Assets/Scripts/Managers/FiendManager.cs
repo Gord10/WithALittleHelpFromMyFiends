@@ -10,6 +10,7 @@ public class FiendManager : MonoBehaviour
     public FiendBase[] fiends;
 
     int fiendIndexToSummon = 0;
+    public int SummonedFiendNum => fiendIndexToSummon;
 
     private void Awake()
     {
@@ -29,6 +30,8 @@ public class FiendManager : MonoBehaviour
 
         return fiend;
     }
+
+    
 
     public FiendBase GetFiendToSummon()
     {

@@ -12,10 +12,12 @@ public class GameUi : MonoBehaviour
     public float fillTweenSpeed = 1;
     public TextMeshProUGUI infoText;
     public TextMeshProUGUI exitText;
+    public TextMeshProUGUI fiendCounterText;
 
     private void Awake()
     {
         exitText.gameObject.SetActive(false);
+        fiendCounterText.gameObject.SetActive(false);
     }
 
     public void SetHpBar(float hp, float maxHp, bool willUseTween)
@@ -74,5 +76,11 @@ public class GameUi : MonoBehaviour
     {
         print("Hide exit text");
         exitText.gameObject.SetActive(false);
+    }
+
+    public void UpdateFiendCounter(int summonedAmount)
+    {
+        fiendCounterText.text = $"Fiends:\n{summonedAmount.ToString()}/7";
+        fiendCounterText.gameObject.SetActive(true);
     }
 }

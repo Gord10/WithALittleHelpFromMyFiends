@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
         FiendBase fiend = FiendManager.Instance.Summon();
         gameCamera.ShowFiend(fiend.Transform);
         gameUi.ShowText(fiend.description);
+        gameUi.UpdateFiendCounter(FiendManager.Instance.SummonedFiendNum);
     }
 
     public void OnMobDeath(Mob mob)

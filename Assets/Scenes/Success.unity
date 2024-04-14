@@ -350,7 +350,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Congrats, you survived!
+  m_text: 'Congrats, you survived! The world won''t, however, after what you''ve
+    done.
 
 
     Thanks for playing.'
@@ -392,7 +393,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -36
+  m_lineSpacing: -10
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -585,7 +586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 8512cfe679731824285b00d09fe8d1c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 8512cfe679731824285b00d09fe8d1c1, type: 3}
       propertyPath: m_LocalPosition.z
