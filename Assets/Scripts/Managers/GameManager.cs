@@ -30,11 +30,12 @@ public class GameManager : MonoBehaviour
 
     public enum State
     {
-        IN_GAME,
-        INTRODUCING_FIEND
+        IN_GAME_SUMMONING,
+        INTRODUCING_FIEND,
+        IN_GAME_RUNNING_FIEND_ZONE
     }
 
-    public State state = State.IN_GAME;
+    public State state = State.IN_GAME_SUMMONING;
 
     GameUi gameUi;
     Player player;
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
         gameUi = FindObjectOfType<GameUi>();
         gameUi.SetXpBar(collectedCrystals, requiredCrystalToSummon);
 
-        gameUi.ShowText($"Collect {requiredCrystalToSummon} crystals to summon a fiend");
+        gameUi.ShowText($"Collect seven crystals to summon a fiend");
         Time.timeScale = 1.0f;
     }
 
@@ -102,6 +103,12 @@ public class GameManager : MonoBehaviour
         return position;
     }
 
+    bool IsPointInGameWorld(Vector3 point)
+    {
+        return (point.x < gameWorldHalfWidth && point.x > -gameWorldHalfWidth) &&
+                (point.y < gameWorldHalfHeight && point.y > -gameWorldHalfHeight);
+    }
+
     public static Vector3 GetRandomPointCloseToPoint(Vector3 point, float range)
     {
         Vector3 circle;
@@ -113,15 +120,14 @@ public class GameManager : MonoBehaviour
             circle = Random.insideUnitCircle * range;
             position = point + circle;
         }
-        while (Player.Instance.IsPointTooCloseToMe(position, maxDistanceFromPlayer)); 
+        while (Player.Instance.IsPointTooCloseToMe(position, maxDistanceFromPlayer) || !Instance.IsPointInGameWorld(position));
 
-
-        return point + circle;
+        return position;
     }
 
     public bool IsMovementAllowed()
     {
-        return state == State.IN_GAME;
+        return state == State.IN_GAME_SUMMONING || state == State.IN_GAME_RUNNING_FIEND_ZONE;
     }
 
     public void EndFiendIntroduction()
@@ -132,7 +138,7 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
-        state = State.IN_GAME;
+        state = (FiendManager.Instance.AreAllFiendsSummoned()) ? State.IN_GAME_RUNNING_FIEND_ZONE : State.IN_GAME_SUMMONING;
         Time.timeScale = 1;
     }
 
@@ -142,10 +148,21 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    //Is the Pride fiend chasing all other fiends and does player must escape?
+    public bool IsInEscapeState()
+    {
+        return state == State.IN_GAME_RUNNING_FIEND_ZONE;
+    }
+
+    public void OnPlayerEscape()
+    {
+        SceneManager.LoadScene("Success");
+    }
+
     private void Update()
     {
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.X) && state == State.IN_GAME)
+        if (Input.GetKeyDown(KeyCode.X) && state == State.IN_GAME_SUMMONING)
         {
             Summon();
         }

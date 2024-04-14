@@ -8,6 +8,9 @@ public abstract class NpcBase : CharacterBase
 {
     public float touchDamagePerSecond = 2;
 
+    public float fadeOutTime = 1f;
+    public float fadeInTime = 1f;
+
     protected CharacterBase targetedEnemy;
     protected CollectableBase targetedCollectable;
 
@@ -34,8 +37,7 @@ public abstract class NpcBase : CharacterBase
         color.a = 0;
         spriteRenderer.color = color;
 
-        float spawnFadeInTime = 2;
-        spriteRenderer.DOFade(1, spawnFadeInTime).SetUpdate(true);
+        spriteRenderer.DOFade(1, fadeInTime).SetUpdate(true);
 
         isSlowDown = false;
 
@@ -68,5 +70,12 @@ public abstract class NpcBase : CharacterBase
     public void ManualFixedUpdate()
     {
         MoveTowardsTargetEnemy();
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        animator.speed = 0;
+        spriteRenderer.DOFade(0, fadeOutTime).OnComplete(() => { gameObject.SetActive(false); });
     }
 }

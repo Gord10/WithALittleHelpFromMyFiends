@@ -15,6 +15,8 @@ public abstract class CharacterBase : MonoBehaviour
     protected Animator animator;
     new protected Collider2D collider;
 
+    protected GameManager gameManager;
+
     public Transform Transform
     {
         get
@@ -44,6 +46,8 @@ public abstract class CharacterBase : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         collider = GetComponent<Collider2D>();
+
+        gameManager = GameManager.Instance;
     }
 
     protected void SetDirectionTowardsTarget(Vector3 targetPosition)

@@ -18,7 +18,6 @@ namespace Fiend
         private void FixedUpdate()
         {
             MoveTowardsTargetEnemy();
-            //ChaseCollectableItem(range);
         }
 
         protected override void OnTriggerEnter2D(Collider2D collision)

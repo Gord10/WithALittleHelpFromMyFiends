@@ -129,8 +129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.2
   health: 3
-  touchDamagePerSecond: 2
+  touchDamagePerSecond: 3
   fadeOutTime: 0.3
+  fadeInTime: 1
 --- !u!95 &4645717817002360881
 Animator:
   serializedVersion: 5

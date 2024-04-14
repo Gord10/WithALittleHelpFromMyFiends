@@ -12,24 +12,28 @@ namespace Fiend
         public bool doesWantToDamageMobs = true;
         public int maxMobNum = 10;
 
+        protected Exit exit;
+
         protected override void Awake()
         {
             base.Awake();
+            exit = FindObjectOfType<Exit>();
         }
 
         protected void SearchForMobTarget()
         {
             Mob closestMob = MobManager.Instance.GetClosestMobAlive(Transform.position);
             SetTarget(closestMob);
-            //if (targetedEnemy == null || !targetedEnemy.IsValidTarget())
-            //{
+        }
 
-            //}
+        protected void MoveToExit()
+        {
+            MoveTowardsTargetPosition(exit.transform.position);
         }
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            if (touchDamagePerSecond > 0 && (collision.collider.CompareTag("Mob") || collision.collider.CompareTag("Player")))
+            if (touchDamagePerSecond > 0 && CanHarmThisCollider(collision.collider))
             {
                 if (collision.gameObject.TryGetComponent(out CharacterBase character))
                 {
@@ -52,11 +56,6 @@ namespace Fiend
 
         protected void ChaseCollectableItem(float range)
         {
-            //if (!targetedCollectable || !targetedCollectable.IsCollectable)
-            //{
-            //    targetedCollectable = FindDesiredCollectableItem(range);
-            //}
-
             targetedCollectable = FindDesiredCollectableItem(range);
 
             if (doesWantToDamageMobs)
@@ -78,6 +77,20 @@ namespace Fiend
             else
             {
                 MoveTowardsTargetEnemy();
+            }
+        }
+
+        protected virtual bool CanHarmThisCollider(Collider2D collider)
+        {
+            return (collider.CompareTag("Mob") || collider.CompareTag("Player"));
+        }
+
+        protected override void OnTriggerEnter2D(Collider2D collision)
+        {
+            base.OnTriggerEnter2D(collision);
+            if(collision.CompareTag("Exit") && gameManager.IsInEscapeState() && this is not FiendPride)
+            {
+                gameObject.SetActive(false);
             }
         }
     }

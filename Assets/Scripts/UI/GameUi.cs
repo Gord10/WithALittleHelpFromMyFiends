@@ -11,6 +11,12 @@ public class GameUi : MonoBehaviour
     public Image xpBar;
     public float fillTweenSpeed = 1;
     public TextMeshProUGUI infoText;
+    public TextMeshProUGUI exitText;
+
+    private void Awake()
+    {
+        exitText.gameObject.SetActive(false);
+    }
 
     public void SetHpBar(float hp, float maxHp, bool willUseTween)
     {
@@ -57,5 +63,16 @@ public class GameUi : MonoBehaviour
     {
         xpBar.DOKill();
         hpBar.DOKill();
+    }
+
+    public void ShowExitText()
+    {
+        exitText.gameObject.SetActive(true);
+    }
+
+    public void HideExitText()
+    {
+        print("Hide exit text");
+        exitText.gameObject.SetActive(false);
     }
 }

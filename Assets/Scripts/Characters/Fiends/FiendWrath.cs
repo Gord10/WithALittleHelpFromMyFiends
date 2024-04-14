@@ -19,6 +19,13 @@ namespace Fiend
 
         private void FixedUpdate()
         {
+            if (gameManager.IsInEscapeState())
+            {
+                SetTarget(FiendManager.Instance.GetLastFiend());
+                return;
+            }
+
+
             SearchForMobTarget();
             if(targetedEnemy && targetedEnemy is not Player && targetedEnemy.DistanceFromObject(Transform) > Player.Instance.DistanceFromObject(Transform))
             {

@@ -11,7 +11,14 @@ namespace Fiend
 
         private void FixedUpdate()
         {
-            ChaseCollectableItem(range);
+            if (gameManager.IsInEscapeState())
+            {
+                MoveToExit();
+            }
+            else
+            {
+                ChaseCollectableItem(range);
+            }
         }
 
         protected override void OnTriggerEnter2D(Collider2D collision)

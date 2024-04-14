@@ -67,6 +67,28 @@ public class Player : CharacterBase
                 collectable.GetCollected(this);
             }
         }
+
+        if(collision.CompareTag("Exit"))
+        {
+            if(gameManager.IsInEscapeState())
+            {
+                gameManager.OnPlayerEscape();
+            }
+            else
+            {
+                gameUi.ShowExitText();
+            }
+            
+        }
+    }
+
+    protected override void OnTriggerExit2D(Collider2D other)
+    {
+        base.OnTriggerExit2D (other);
+        if (other.CompareTag("Exit"))
+        {
+            gameUi.HideExitText();
+        }
     }
 
     public override void ReceiveDamage(float damage)
