@@ -11,6 +11,7 @@ public abstract class CharacterBase : MonoBehaviour
 
     protected Rigidbody2D rigidbody;
     protected Vector2 movementDirection;
+    protected Animator animator;
 
     public Transform Transform
     {
@@ -39,6 +40,7 @@ public abstract class CharacterBase : MonoBehaviour
         movementDirection = new();
         maxHealth = health;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     protected void SetDirectionTowardsTarget(Vector3 targetPosition)
@@ -108,8 +110,13 @@ public abstract class CharacterBase : MonoBehaviour
         float movementX = Input.GetAxis("Horizontal");
         float movementY = Input.GetAxis("Vertical");
 
+        bool isMoving = movementX != 0 || movementY != 0;
+        animator.speed = (isMoving) ? 2 : 1;
+
         movementDirection = new(movementX, movementY);
         movementDirection = Vector2.ClampMagnitude(movementDirection, 1);
+
+
     }
 
     public virtual void Die()
