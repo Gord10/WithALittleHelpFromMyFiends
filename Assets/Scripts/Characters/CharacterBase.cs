@@ -16,6 +16,7 @@ public abstract class CharacterBase : MonoBehaviour
     new protected Collider2D collider;
 
     protected GameManager gameManager;
+    protected HurtIndicator hurtIndicator;
 
     public Transform Transform
     {
@@ -46,6 +47,7 @@ public abstract class CharacterBase : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         collider = GetComponent<Collider2D>();
+        hurtIndicator = GetComponent<HurtIndicator>();
 
         gameManager = GameManager.Instance;
     }
@@ -112,6 +114,11 @@ public abstract class CharacterBase : MonoBehaviour
         if(health <= 0)
         {
             Die();
+        }
+
+        if (hurtIndicator)
+        {
+            hurtIndicator.OnHurt(health <= 0);
         }
     }
 

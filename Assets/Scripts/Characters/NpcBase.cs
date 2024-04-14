@@ -14,6 +14,14 @@ public abstract class NpcBase : CharacterBase
     protected CharacterBase targetedEnemy;
     protected CollectableBase targetedCollectable;
 
+    protected Color defaultColor;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        defaultColor = spriteRenderer.color;
+    }
+
     public void SetTarget(CharacterBase targetedEnemy)
     {
         this.targetedEnemy = targetedEnemy;
@@ -33,7 +41,7 @@ public abstract class NpcBase : CharacterBase
         gameObject.SetActive(true);
         
         animator.speed = 1;
-        Color color = spriteRenderer.color;
+        Color color = defaultColor;
         color.a = 0;
         spriteRenderer.color = color;
 
