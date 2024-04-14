@@ -135,4 +135,13 @@ public class GameManager : MonoBehaviour
         state = State.IN_GAME;
         Time.timeScale = 1;
     }
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.X) && state == State.IN_GAME)
+        {
+            Summon();
+        }
+    }
+#endif
 }
