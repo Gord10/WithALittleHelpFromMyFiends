@@ -12,13 +12,17 @@ public class FiendManager : MonoBehaviour
     int fiendIndexToSummon = 0;
     public int SummonedFiendNum => fiendIndexToSummon;
 
+    AudioSource audioSource;
+
     private void Awake()
     {
         instance = this;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public FiendBase Summon()
     {
+        audioSource.Play();
         FiendBase fiend = GetFiendToSummon();
         float playerDistanceRange = 1.2f;
         Vector3 pos = GameManager.GetRandomPointCloseToPoint(Player.Instance.Transform.position, playerDistanceRange);

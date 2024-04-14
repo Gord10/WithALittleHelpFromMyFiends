@@ -16,11 +16,13 @@ namespace CollectableItem
         new public Collider2D collider;
 
         LightSource lightSource;
+        new AudioSource audioSource;
 
         protected virtual void Awake()
         {
             cachedTransform = transform;
             lightSource = GetComponent<LightSource>();
+            audioSource = GetComponent<AudioSource>();
         }
 
         public virtual void GetCollected(CharacterBase collector)
@@ -32,6 +34,12 @@ namespace CollectableItem
             if(lightSource != null)
             {
                 lightSource.TurnOff();
+            }
+
+            if(collector is Player)
+            {
+                audioSource.pitch = Random.Range(0.99f, 1.01f);
+                audioSource.Play();
             }
         }
 

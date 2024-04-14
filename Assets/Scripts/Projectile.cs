@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,18 @@ public class Projectile : MonoBehaviour
     Vector2 direction;
     float launchTime;
     LightSource lightSource;
-
+    AudioSource audioSource;
+    new Collider2D collider;
+    SpriteRenderer spriteRenderer;
+    bool isMoving = true;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         lightSource = GetComponent<LightSource>();
+        audioSource = GetComponent<AudioSource>();
+        collider = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void Launch(Vector3 position, Vector3 direction)
@@ -27,6 +34,10 @@ public class Projectile : MonoBehaviour
         launchTime = Time.time;
         gameObject.SetActive(true);
         lightSource?.TurnOn(true);
+
+        collider.enabled = true;
+        spriteRenderer.enabled = true;
+        isMoving = true;
     }
 
     private void FixedUpdate()
@@ -36,7 +47,12 @@ public class Projectile : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
-        rigidbody.velocity = direction * speed;
+
+        if(isMoving)
+        {
+            rigidbody.velocity = direction * speed;
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -45,10 +61,32 @@ public class Projectile : MonoBehaviour
         {
             if(collision.collider.TryGetComponent(out CharacterBase character))
             {
+                
+                collider.enabled = false;
                 character.ReceiveDamage(damage);
+                
             }
         }
 
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        audioSource.Play();
+        rigidbody.velocity = Vector2.zero;
+        isMoving = false;
+        StartCoroutine(FadeOff(audioSource.clip.length));
+        //gameObject.SetActive(false);
+    }
+
+    IEnumerator FadeOff(float time)
+    {
+        lightSource.TurnOff();
+        spriteRenderer.enabled = false;
+        yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
+        //spriteRenderer.DOFade(0, audioSource.clip.length).OnComplete(() => gameObject.SetActive(false));
+    }
+
+    private void OnDestroy()
+    {
+        spriteRenderer.DOKill();
     }
 }
