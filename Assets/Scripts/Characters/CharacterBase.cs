@@ -53,7 +53,7 @@ public abstract class CharacterBase : MonoBehaviour
     protected void SetDirectionTowardsTarget(Vector3 targetPosition)
     {
         Vector2 diff = targetPosition - cachedTransform.position;
-        movementDirection = Vector2.ClampMagnitude(diff, 1);
+        movementDirection = diff.normalized;
     }
 
     public void MoveRigidbody()

@@ -1184,11 +1184,10 @@ MonoBehaviour:
   touchDamagePerSecond: 3
   fadeOutTime: 1
   fadeInTime: 1
-  description: 
+  description: This fiend will attack any mobs on his way
   doesWantToDamagePlayer: 0
   doesWantToDamageMobs: 1
   maxMobNum: 40
-  projectileLaunchInterval: 1
 --- !u!61 &1004304674
 BoxCollider2D:
   m_ObjectHideFlags: 0
