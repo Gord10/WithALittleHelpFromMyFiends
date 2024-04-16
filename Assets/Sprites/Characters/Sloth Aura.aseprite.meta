@@ -121,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Sloth
+  - name: Sloth Aura
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 128
       height: 128
-    spriteID: 13640b193a4363a408d73e810740d151
+    spriteID: 0f23f48c8b5aed645853555577d5e319
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,20 +144,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1427958886
-    name: Sloth
+    guid: -1165867037
+    name: Sloth Aura
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Sloth
+    - name: Sloth Aura
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
         width: 128
         height: 128
-      spriteId: 13640b193a4363a408d73e810740d151
+      spriteId: 0f23f48c8b5aed645853555577d5e319
     linkedCells: []
     parentIndex: -1
   platformSettings:
