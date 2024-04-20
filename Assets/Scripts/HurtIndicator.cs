@@ -22,7 +22,7 @@ public class HurtIndicator : MonoBehaviour
     {
         counter -= Time.deltaTime;
 
-        if(hurtAudio!=null && !hurtAudio.isPlaying)
+        if(hurtAudio!=null && !hurtAudio.isPlaying && Time.timeSinceLevelLoad > 0.1f)
         {
             hurtAudio.pitch = Random.Range(0.95f, 1.05f);
             hurtAudio.Play();

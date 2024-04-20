@@ -165,7 +165,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.10477507}
+  m_Offset: {x: 0, y: 0.0357517}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.3125, y: 0}
@@ -176,7 +176,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.20955014}
+  m_Size: {x: 0.1, y: 0.0715034}
   m_EdgeRadius: 0
 --- !u!114 &268643834183095800
 MonoBehaviour:
@@ -278,7 +278,6 @@ GameObject:
   - component: {fileID: 6806412021426703266}
   - component: {fileID: 8572906137836236527}
   - component: {fileID: 3435826314795260098}
-  - component: {fileID: 5336931888490774415}
   m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -336,7 +335,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 0.9
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -417,30 +416,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
---- !u!114 &5336931888490774415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6004737119579606105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 1
-  m_AssetsPPU: 100
-  m_RefResolutionX: 320
-  m_RefResolutionY: 180
-  m_CropFrame: 0
-  m_GridSnapping: 0
-  m_FilterMode: 0
-  m_UpscaleRT: 0
-  m_PixelSnapping: 0
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 0
 --- !u!1 &8513175764393632155
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +458,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: dc0cf4e30ee09474ba4cb284649acae3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8d6373854c4ab7540ba55e72d170d20a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.465
   m_Pitch: 1
