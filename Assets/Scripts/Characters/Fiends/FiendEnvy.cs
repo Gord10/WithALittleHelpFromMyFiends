@@ -17,22 +17,6 @@ namespace Fiend
         {
             MoveTowardsTargetEnemy();
         }
-
-        //protected override void OnTriggerEnter2D(Collider2D collision)
-        //{
-        //    if (collision.CompareTag("Collectable"))
-        //    {
-        //        if (collision.gameObject.TryGetComponent<CollectableBase>(out CollectableBase collectable))
-        //        {
-        //            collectable.GetCollected(this);
-        //        }
-        //    }
-        //}
-
-        //protected override CollectableBase FindDesiredCollectableItem(float range)
-        //{
-        //    return CollectableItemManager.Instance.GetClosestItem(Transform.position, range);
-        //}
     }
 }
 

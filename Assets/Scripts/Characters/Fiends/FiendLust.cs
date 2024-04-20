@@ -8,9 +8,10 @@ namespace Fiend
     {
         private void FixedUpdate()
         {
-            if (gameManager.IsInEscapeState())
+            if (gameManager.IsInEscapeState()) //He understood he is rejected by player. A rejection he can't take.
             {
-                MoveToExit();
+                SetTarget(Player.Instance);
+                MoveTowardsTargetEnemy();
                 return;
             }
 
