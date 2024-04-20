@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
 {
+    private void Awake()
+    {
+        Cursor.visible = false;
+    }
+
     // Update is called once per frame
     void Update()
     {

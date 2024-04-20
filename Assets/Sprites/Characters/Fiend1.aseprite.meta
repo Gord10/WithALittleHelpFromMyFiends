@@ -128,10 +128,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 36
       y: 4
       width: 24
-      height: 32
+      height: 31
     spriteID: 422cea53aeaaa0a40a8e88e7610aff3e
     spriteBone: []
     spriteOutline: []
@@ -140,7 +140,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 36, y: 4}
   - name: Fiend1_Frame_1
     originalName: 
     pivot: {x: 0.24166667, y: 0}
@@ -148,10 +148,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 36
+      x: 4
       y: 4
       width: 24
-      height: 31
+      height: 32
     spriteID: 66c142b9337efdc41b20c9776154d7e4
     spriteBone: []
     spriteOutline: []
@@ -160,7 +160,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 36, y: 4}
+    uvTransform: {x: 4, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -176,7 +176,7 @@ ScriptedImporter:
         x: 7
         y: 0
         width: 24
-        height: 32
+        height: 31
       spriteId: 422cea53aeaaa0a40a8e88e7610aff3e
     - name: Fiend1_Frame_1
       frameIndex: 1
@@ -184,7 +184,7 @@ ScriptedImporter:
         x: 7
         y: 0
         width: 24
-        height: 31
+        height: 32
       spriteId: 66c142b9337efdc41b20c9776154d7e4
     linkedCells: []
     parentIndex: -1

@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
 
         gameUi.ShowText($"Collect seven crystals to summon a fiend");
         Time.timeScale = 1.0f;
+
+        Cursor.visible = false;
     }
 
     public void OnCrystalCollection(Crystal crystal)
