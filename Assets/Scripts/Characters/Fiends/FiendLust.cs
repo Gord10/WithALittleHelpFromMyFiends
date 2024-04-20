@@ -15,8 +15,32 @@ namespace Fiend
                 return;
             }
 
-            SearchForMobTarget();
-            MoveTowardsTargetEnemy();
+            Vector3 playerPos = Player.Instance.Transform.position;
+            Mob mobClosestToPlayer = MobManager.Instance.GetClosestMobAlive(playerPos);
+
+            if (mobClosestToPlayer != null)
+            {
+                SetTarget(mobClosestToPlayer);
+                MoveTowardsTargetEnemy();
+            }
+
+            //if(targetedEnemy && !targetedEnemy.IsValidTarget())
+            //{
+            //    targetedEnemy = null;
+            //}
+
+            //if(!targetedEnemy)
+            //{
+            //    Vector3 playerPos = Player.Instance.Transform.position;
+            //    Mob mobClosestToPlayer = MobManager.Instance.GetClosestMobAlive(playerPos);
+
+            //    if(mobClosestToPlayer != null)
+            //    {
+            //        SetTarget(mobClosestToPlayer);
+            //    }
+            //}
+
+
         }
     }
 }

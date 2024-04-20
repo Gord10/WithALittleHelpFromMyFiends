@@ -15,4 +15,9 @@ public class SlothZone : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.DOFade(targetFadeAlpha, fadeTime).SetLoops(-1, LoopType.Yoyo);
     }
+
+    private void OnDestroy()
+    {
+        spriteRenderer.DOKill();
+    }
 }

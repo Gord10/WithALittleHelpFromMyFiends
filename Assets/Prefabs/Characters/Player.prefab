@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 268643834183095800}
   - component: {fileID: 5020027340468108882}
   - component: {fileID: 3785378187150613027}
+  - component: {fileID: 7717260230252161183}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -265,6 +266,14 @@ MonoBehaviour:
   hurtAudio: {fileID: 6034528091709745606}
   hurtColor: {r: 1, g: 0, b: 0, a: 1}
   duration: 0.1
+--- !u!81 &7717260230252161183
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722827030753045199}
+  m_Enabled: 1
 --- !u!1 &6004737119579606105
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +284,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2465075687682659069}
   - component: {fileID: 9154902294513660765}
-  - component: {fileID: 6806412021426703266}
   - component: {fileID: 8572906137836236527}
   - component: {fileID: 3435826314795260098}
   m_Layer: 6
@@ -351,14 +359,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &6806412021426703266
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6004737119579606105}
-  m_Enabled: 1
 --- !u!114 &8572906137836236527
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ namespace CollectableItem
         new public Collider2D collider;
 
         LightSource lightSource;
-        new AudioSource audioSource;
+        AudioSource audioSource;
 
         protected virtual void Awake()
         {

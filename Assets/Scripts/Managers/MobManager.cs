@@ -113,25 +113,6 @@ public class MobManager : MonoBehaviour
         return null;
     }
 
-    //public Mob GetRandomMobInRange(Vector3 pos, float range)
-    //{
-    //    int attempts = 0;
-    //    int maxAttemptAllowed = 20;
-    //    int randomIndex = Random.Range(0, mobs.Length / 3);
-
-    //    while (attempts < maxAttemptAllowed)
-    //    {
-    //        Mob mob = mobs[randomIndex];
-    //        if (mob.IsValidTarget())
-    //        {
-    //            return mob;
-    //        }
-    //        attempts++;
-    //    }
-
-    //    return null;
-    //}
-
     public void KillAllMobs()
     {
         for(int i = 0;i < mobs.Length;i++)
