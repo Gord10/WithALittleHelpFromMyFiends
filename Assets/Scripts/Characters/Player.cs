@@ -20,6 +20,7 @@ public class Player : CharacterBase
     private static Player instance;
 
     GameUi gameUi;
+    GameCamera gameCamera;
 
     protected override void Awake()
     {
@@ -27,6 +28,8 @@ public class Player : CharacterBase
         instance = this;
         gameUi = FindObjectOfType<GameUi>();
         gameUi.SetHpBar(health, MaxHealth, false);
+
+        gameCamera = FindObjectOfType<GameCamera>();
     }
 
     // Update is called once per frame
@@ -96,6 +99,7 @@ public class Player : CharacterBase
         base.ReceiveDamage(damage);
         bool willShowTween = damage > 0.1f;
         gameUi.SetHpBar(health, MaxHealth, willShowTween);
+        gameCamera.StartShake();
     }
 
     public void IncreaseHealth(float increase)
